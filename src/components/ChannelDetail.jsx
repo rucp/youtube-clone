@@ -20,11 +20,28 @@ const ChannelDetail = () => {
     );
 
     fetchFromAPI(`search?channelId=${id}&part=snippet&order=date`).then(
-      (data) => setVideos(data?.items[0])
+      (data) => setVideos(data?.items)
     );
   }, [id]);
 
-  return <div>{id}</div>;
+  return (
+    <Box minHeight="95vh">
+      <Box>
+        <div
+          style={{
+            background: 'linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)',
+            xIndex: 10,
+            height: '300px',
+          }}
+        />
+        <ChannelCard channelDetail={channelDetail} marginTop="-110px" />
+      </Box>
+      <Box display="flex" p="2">
+        <Box sx={{ mr: { sm: '100px' } }} />
+        <Videos videos={videos} />
+      </Box>
+    </Box>
+  );
 };
 
 export default ChannelDetail;
